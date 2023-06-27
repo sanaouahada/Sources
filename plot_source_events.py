@@ -20,7 +20,7 @@ def load_data(filename):
 # Plot data
 def plot_xy(data, title): 
     plt.figure() 
-    shifted_y = data['y_position'] + 25
+    shifted_y = data['y_position']  # + 25 if data from G4 because TPC not centered 
     plt.scatter(data['x_position'], shifted_y, s=8, c='#364B9A', label = 'Interaction vertices') 
     plt.gca().set_aspect('equal')
     plt.gca().add_patch(Circle((0, 0), 75, linewidth=1.5, color='#F67E4B', 
@@ -71,20 +71,28 @@ def plot_rz(data, title):
     plt.show()
     plt.close()
     
-
 def plot_energy_spectrum(data, title):
+    # Read the data file and extract the energy values, plot energy spectrum with respect to weights
+    energy_values =  data['energy_dep']*1e6
+
+    # Compute the weights
+    weights = np.ones_like(energy_values)/float(len(energy_values))
+
     plt.figure()
-    plt.hist(data['energy_dep']*1e6, bins=100, color='#364B9A')
+    plt.hist(energy_values, bins=100, weights=weights, color='#364B9A')
     plt.xlabel('Energy [keV]')
-    plt.ylabel('Number of events')
+    plt.ylabel('Counts')
+    plt.title(title)
 
     # Add grid lines
     plt.grid(True, linestyle='--', alpha=0.5)
 
     # Set background color to gray
     plt.gca().set_facecolor('#FAFAFA')
-
-    plt.title(f"Energy spectrum of the {title} source")
-    plt.savefig('figures/'f"energy_spectrum_{title}.png")
+      
+    plt.savefig('figures/' + f"energy_spectrum_{title}.png")
     plt.show()
     plt.close()
+
+
+    
