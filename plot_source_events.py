@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Circle, Rectangle
 
+# Figure size and DPI
+plt.figure(figsize=(8, 6))
 plt.rcParams['font.size'] = 14
+plt.rcParams['axes.linewidth'] = 1
+
 
 # Load data
 def load_data(filename):
@@ -26,6 +30,16 @@ def plot_xy(data, title):
     plt.ylim(-100, 100)
     plt.xlabel('x [mm]')
     plt.ylabel('y [mm]')
+
+    # Set aspect ratio to 'equal' for a square plot
+    #plt.axis('equal')
+
+    # Add grid lines
+    plt.grid(True, linestyle='--', alpha=0.5)
+
+    # Set background color to gray
+    plt.gca().set_facecolor('#FAFAFA')
+    
     plt.legend(loc = 'upper right')
     plt.title(title)
     plt.savefig('figures/'f"xy_{title}.png")
@@ -41,6 +55,12 @@ def plot_rz(data, title):
     plt.ylabel('z [mm]')
     plt.xlabel('r [mm]')
     plt.ylim(0, 3000)
+
+    # Add grid lines
+    plt.grid(True, linestyle='--', alpha=0.5)
+
+    # Set background color to gray
+    plt.gca().set_facecolor('#FAFAFA')
       
     # Add a line at z = 2.6 m
     plt.axhline(y=2600, color='#F67E4B', linestyle='--', label='TPC length : 2.6 m')
@@ -57,6 +77,13 @@ def plot_energy_spectrum(data, title):
     plt.hist(data['energy_dep']*1e6, bins=100, color='#364B9A')
     plt.xlabel('Energy [keV]')
     plt.ylabel('Number of events')
+
+    # Add grid lines
+    plt.grid(True, linestyle='--', alpha=0.5)
+
+    # Set background color to gray
+    plt.gca().set_facecolor('#FAFAFA')
+
     plt.title(f"Energy spectrum of the {title} source")
     plt.savefig('figures/'f"energy_spectrum_{title}.png")
     plt.show()
