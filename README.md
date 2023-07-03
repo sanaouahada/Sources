@@ -24,4 +24,4 @@ The `ideal_sources/` subfolder contains data files representing ideal sources. T
 1. Modify the source generation code (not here for now) or configuration file to allow for non-centered positions.
 2. Specify the desired positions for the sources. 
 3. Rerun the simulation using the updated source positions.
-4. Add more relevant data from G4 simulatinons. 
+4. Add more relevant data from G4 simulations. 
