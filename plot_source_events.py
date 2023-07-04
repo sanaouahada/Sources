@@ -4,12 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Circle, Rectangle
 
-# Figure size and DPI
-plt.figure(figsize=(8, 6))
-plt.rcParams['font.size'] = 14
-plt.rcParams['axes.linewidth'] = 1
-
-
 # Load data
 def load_data(filename):
     data = pd.read_csv(filename, sep=',')
