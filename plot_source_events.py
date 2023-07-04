@@ -20,7 +20,7 @@ def load_data(filename):
 # Plot data
 def plot_xy(data, title): 
     plt.figure() 
-    shifted_y = data['y_position']  # + 25 if data from G4 because TPC not centered 
+    shifted_y = data['y_position']  # + 25 # if data from G4 because TPC not centered 
     plt.scatter(data['x_position'], shifted_y, s=8, c='#364B9A', label = 'Interaction vertices') 
     plt.gca().set_aspect('equal')
     plt.gca().add_patch(Circle((0, 0), 75, linewidth=1.5, color='#F67E4B', 
@@ -80,6 +80,7 @@ def plot_energy_spectrum(data, title):
 
     plt.figure()
     plt.hist(energy_values, bins=100, weights=weights, color='#364B9A')
+    #plt.hist(energy_values, bins=100, color='#364B9A')
     plt.xlabel('Energy [keV]')
     plt.ylabel('Counts')
     plt.title(title)
